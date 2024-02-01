@@ -1,0 +1,34 @@
+def converter_moeda(valor, moeda_inicial, moeda_cambio):
+    # Taxas de câmbio padrão (pode ajustar conforme necessário)
+    taxa_usd_brl = 5.50
+    taxa_brl_usd = 1 / taxa_usd_brl
+
+
+taxas = {'USD': { 'BRL': taxa_usd_brl},
+    'BRL': {'USD': taxa_brl_usd}
+    }
+
+if moeda_inicial not in taxas or moeda_cambio not in taxas:
+        print("Moeda inválida. Escolha entre USD e BRL.")
+
+valor_convertido = valor *taxas[moeda_inicial][moeda_cambio]
+
+print(f"Valor convertido: {moeda_cambio} {valor_convertido:.2f}")
+
+# Função principal do programa
+def main():
+    while True:
+        valor = float(input("Digite o valor inicial: "))
+        moeda_inicial = input("Digite a moeda inicial (USD/BRL): ").upper()
+        moeda_cambio = input("Digite a moeda de câmbio (USD/BRL): ").upper()
+
+        # Chama a função para converter e exibir o resultado
+        converter_moeda(valor, moeda_inicial, moeda_cambio)
+
+        # Pergunta ao usuário se deseja continuar
+        continuar = input("Deseja realizar outra conversão? (S/N): ").upper()
+        if continuar != 'S':
+            break
+
+if __name__ == "__main__":
+    main()
